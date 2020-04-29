@@ -1,1 +1,1 @@
-python3 -m pip install uvicorn
+py -m pip install uvicorn

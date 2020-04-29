@@ -1,1 +1,1 @@
-#!/bin/bash
+py -m pip update uvicorn
