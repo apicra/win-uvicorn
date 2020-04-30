@@ -1,7 +1,8 @@
 @ECHO OFF
+netstat -a -n -o | findstr ":8000"
 FOR /F "tokens=5" %%T IN ('netstat -a -n -o ^| findstr ":8000" ') DO (
-SET /A ProcessId=%%T) &GOTO SkipLine
-:SkipLine
-echo ProcessId to kill = %ProcessId%
-taskkill /f /pid %ProcessId%
-::PAUSE
+echo ProcessId to kill = %%T
+wmic process where "ParentProcessId=%%T" delete)
+::taskkill /pid %%T /F /T
+:: /T = kills child process
+:: /F = forceful termination of your process
